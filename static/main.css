@@ -1,0 +1,15 @@
+body {
+    background-color: white;
+  }
+
+h1{
+    margin: auto;
+    width: 20%;
+    padding: 20px;
+}
+.conntent {
+    margin: auto;
+    width: 100%;
+    padding: 20px;
+
+}
