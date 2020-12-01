@@ -131,3 +131,7 @@ dmypy.json
 #ide
 .vscode
 .idea/
+
+#db
+whisky.db
+
