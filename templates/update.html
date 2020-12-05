@@ -8,8 +8,10 @@
     <div class="conntent_2">
         <form action="/{{whisky.id}}" method="POST">
             <input type="submit" value="Powrót do menu wyboru">
-            <p>Szczegóły:</p>
-            <p>{{whisky}}</p>
+            <h1>Szczegóły:</h1>
+            <h2> Nazwa: {{whisky.name}}</h2>
+            <h2> Kraj Pochodzenia: {{whisky.country}}</h2>
+            <h2> Smak: {{whisky.taste}}</h2>
             <p><img name="img_id" id="{{whisky.id}}}" src="{{whisky.image}}" width="400" height="737"></p>
         </form>
     </div>
