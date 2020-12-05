@@ -11,6 +11,8 @@ h1{
     margin: auto;
     width: 100%;
     padding: 20px;
+    position: absolute;
+    text-align: center;
 
 }
 .conntent_2 {
