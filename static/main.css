@@ -13,3 +13,9 @@ h1{
     padding: 20px;
 
 }
+.conntent_2 {
+    position: absolute;
+    text-align: center;
+    top: 1%;
+    width: 100%;
+}

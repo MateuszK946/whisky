@@ -10,4 +10,4 @@ class Whisky(db.Model):
     image = db.Column(db.String(120), unique=True)
     
     def __repr__(self):
-        return f"Whisky {self.name} {self.country}"
+        return f"Whisky {self.name}, {self.country}, {self.taste}"
