@@ -7,7 +7,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///whisky.db'
 db.init_app(app)
 app.app_context().push()
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def hello_world():
     whiskies = Whisky.query.limit(3).all()
     return render_template('index.html', whisky=whiskies)
