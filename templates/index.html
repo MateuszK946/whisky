@@ -7,12 +7,11 @@
 <body>
     <div class = "conntent">
         <h1> Wybierz whisky: </h1>
-        <a href="https://www.whiskybase.com/whiskies/whisky/42522/dalmore-cigar-malt-reserve"><img src="https://sklep-wina.pl/pol_pl_Dalmore-Cigar-Malt-Reserve-Single-Malt-Scotch-Whisky-1134_1.png" alt="tekst alternatywny" width="600" height="737"></a>
-        <a href="https://www.whiskybase.com/whiskies/whisky/122914/johnnie-walker-blue-label"><img src="https://www.licorea.com/images/magictoolbox_cache/feabb61ae2a71c1844359f7cbe8b5d82/3/2/32/original/1380784978/johnnie_walker_blue_label_70cl.jpg" alt="tekst alternatywny" width="620" height="737"></a>
-        <a href="https://www.whiskybase.com/whiskies/whisky/145812/glenmorangie-signet"><img src="https://www.alkoholeswiata24.pl/gfx/big/1601366075.0447.jpg" alt="tekst alternatywny" width="650" height="737"></a>
-
-<!--        <form action = "/" method="POST">-->
-<!--        </form>-->
+        <form action = "/" method="POST">
+            <a href="http://127.0.0.1:5000/{{whisky[0].id}}"><img name="img_id" id="{{whisky[0].id}}}" src="{{whisky[0].image}}" width="400" height="737"></a>
+            <a href="http://127.0.0.1:5000/{{whisky[2].id}}"><img name="img_id" id="{{whisky[2].id}}}" src="{{whisky[2].image}}" width="450" height="737"></a>
+            <a href="http://127.0.0.1:5000/{{whisky[1].id}}"><img name="img_id" id="{{whisky[1].id}}}" src="{{whisky[1].image}}" width="450" height="737"></a>
+        </form>
     </div>
 </body>
 </html>
