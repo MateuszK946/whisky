@@ -24,4 +24,3 @@ def whisky(id):
 if __name__ == "__main__":
     app.run(debug=True)
     print(Whisky.query.get_or_404(1))
-    
