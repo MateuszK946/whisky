@@ -17,4 +17,6 @@ On Windows
 export FLASK_ENV=development
 ```
 5. Set up database
-TO DO
+```
+python init_db.py
+```
