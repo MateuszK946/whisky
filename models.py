@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 whisky_tastes = db.Table('whisky_tastes',
-    db.Column('taste_name', db.Integer, db.ForeignKey('taste.name'), primary_key=True),
+    db.Column('taste_name', db.String(80), db.ForeignKey('taste.name'), primary_key=True),
     db.Column('whisky_id', db.Integer, db.ForeignKey('whisky.id'), primary_key=True)
 )
 
