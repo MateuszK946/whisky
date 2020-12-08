@@ -17,8 +17,8 @@ def whisky(id):
     whisky = Whisky.query.get_or_404(id)
     tastes = []
     for taste in whisky.tastes:
-        print(taste.name)
         tastes.append(taste.name)
+
     if request.method == 'POST':
         return redirect('/')
     else:
@@ -26,25 +26,30 @@ def whisky(id):
 
 @app.route('/sortowanie', methods=['POST', 'GET'])
 def sortowanie():
-    whisky = Whisky.query.all()
     tastes = []
     for name in Taste.query.all():
         tastes.append(name.name)
 
     if request.method == 'POST':
-        # taste0 = request.form.get('taste0')
-        # taste1 = request.form.get('taste1')
-        # taste2 = request.form.get('taste2')
-        # print(taste0, taste1, taste2)
-        # if taste0 or taste1 or taste2 in whisky.tastes:
-        #     print(whisky.name)
-        return redirect('/')
+        tastes_checkbox = []
+        for i in range(31):
+            a = request.form.get(f"{i}")
+            if a != None:
+                tastes_checkbox.append(a)
+        id = []
+        w_name = []
+        for i in Whisky.query.all():
+            id.append(i.id)
+            whisky = Whisky.query.get_or_404(i.id)
+            tastes_in_whisky = []
+            for taste in whisky.tastes:
+                tastes_in_whisky.append(taste.name)
+                if tastes_checkbox != [] and all(elem in tastes_in_whisky for elem in tastes_checkbox):
+                    w_name.append(whisky.name)
+                    tastes_in_whisky.clear()
+        return render_template('lista_whisky.html', w_name=w_name)
     else:
         return render_template('sortowanie.html', taste=tastes) # taste=(', '.join(tastes)))
-
-@app.route('/lista', methods=['POST', 'GET'])
-def lista():
-    pass
 
 if __name__ == "__main__":
     app.run(debug=True)
