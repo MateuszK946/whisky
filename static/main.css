@@ -10,12 +10,19 @@ h1{
 .conntent {
     margin: auto;
     width: 100%;
-    padding: 20px;
+    /*padding: 10px;*/
     position: absolute;
     text-align: center;
 
 }
 .conntent_2 {
+    position: absolute;
+    text-align: center;
+    top: 1%;
+    width: 100%;
+}
+
+.conntent_3 {
     position: absolute;
     text-align: center;
     top: 1%;
