@@ -6,10 +6,15 @@
 </head>
 <body>
     <div class="conntent_2">
-        <p><button onclick="location.href='http://127.0.0.1:5000/'" type="button">Powrót do menu wyboru</button></p>
-        {% for your_list_element in w_name %}
-            <p>{{ your_list_element }} </p>
-            {% endfor %}
+        <p><button class="butt" onclick="location.href='http://127.0.0.1:5000/'" type="button">Powrót do menu wyboru</button>
+        <button class="butt" onclick="location.href='http://127.0.0.1:5000/sortowanie'" type="button">Ponowne sortowanie</button> </p>
+        <form action="/list" method="POST">
+            {% for list_of_whisky in w_name %}
+                <input class="butt" type="submit" name="{{list_of_whisky}}" value="{{list_of_whisky}}" /><br><br>
+                {% endfor %}
+            {%if w_name==[]%}
+                <h1>Nie ma wisky bez smaku!</h1>
+            {%endif%}
+        </form>
     </div>
 </body>
-</html>

@@ -32,7 +32,7 @@ def sortowanie():
 
     if request.method == 'POST':
         tastes_checkbox = []
-        for i in range(31):
+        for i in tastes:
             a = request.form.get(f"{i}")
             if a != None:
                 tastes_checkbox.append(a)
@@ -47,9 +47,29 @@ def sortowanie():
                 if tastes_checkbox != [] and all(elem in tastes_in_whisky for elem in tastes_checkbox):
                     w_name.append(whisky.name)
                     tastes_in_whisky.clear()
-        return render_template('lista_whisky.html', w_name=w_name)
+        return render_template('lista_whisky.html', w_name=w_name, whisky_id=whisky)
     else:
         return render_template('sortowanie.html', taste=tastes) # taste=(', '.join(tastes)))
+@app.route('/list', methods=['POST', 'GET'])
+def list():
+    whisky = Whisky.query.all()
+    whisky_name = []
+    for name in whisky:
+        whisky_name.append(name.name)
+
+    if request.method == 'POST':
+        whisky_chosen = ""
+        for i in whisky_name:
+            a = request.form.get(f"{i}")
+            if a != None:
+                whisky_chosen = a
+        id = 0
+        for x in whisky:
+            if x.name == whisky_chosen:
+                id = (x.id)
+        return redirect(f'/{id}')
+    else:
+        return render_template('lista_whisky.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
