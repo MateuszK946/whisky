@@ -1,7 +1,7 @@
 from flask import Flask
 from models import Whisky, db, Taste
-from flask import render_template, request, redirect
-from random import randint
+from flask import render_template, request, redirect, session
+from random import randint, choice
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///whisky.db'
@@ -23,9 +23,7 @@ def hello_world():
 @app.route('/<int:id>', methods=['POST', 'GET'])
 def whisky(id):
     whisky = Whisky.query.get_or_404(id)
-    tastes = []
-    for taste in whisky.tastes:
-        tastes.append(taste.name)
+    tastes = [taste.name for taste in whisky.tastes]
 
     if request.method == 'POST':
         return redirect('/')
@@ -34,14 +32,12 @@ def whisky(id):
 
 @app.route('/sortowanie', methods=['POST', 'GET'])
 def sortowanie():
-    tastes = []
-    for name in Taste.query.all():
-        tastes.append(name.name)
+    tastes = [taste.name for taste in Taste.query.all()]
 
     if request.method == 'POST':
         tastes_checkbox = []
-        for i in tastes:
-            a = request.form.get(f"{i}")
+        for taste in tastes:
+            a = request.form.get(f"{taste}")
             if a != None:
                 tastes_checkbox.append(a)
         id = []
@@ -61,10 +57,8 @@ def sortowanie():
 
 @app.route('/list', methods=['POST', 'GET'])
 def list():
-    whisky = Whisky.query.all()
-    whisky_name = []
-    for name in whisky:
-        whisky_name.append(name.name)
+    whiskies = Whisky.query.all()
+    whisky_name = [whisky.name for whisky in whiskies]
 
     if request.method == 'POST':
         whisky_chosen = ""
@@ -73,7 +67,7 @@ def list():
             if a != None:
                 whisky_chosen = a
         id = 0
-        for x in whisky:
+        for x in whiskies:
             if x.name == whisky_chosen:
                 id = (x.id)
         return redirect(f'/{id}')
@@ -82,13 +76,9 @@ def list():
 
 @app.route('/random', methods=['POST', 'GET'])
 def random():
-    id = []
-    for i in Whisky.query.all():
-        id.append(i.id)
-    rand = randint(18, 518)
-    if rand not in id:
-        rand = randint(18, 518)
-    return redirect(f'/{rand}')
+    ids = [whisky.id for whisky in Whisky.query.with_entities(Whisky.id).distinct()]
+    random_id = choice(ids)
+    return redirect(f'/{random_id}')
 
 if __name__ == "__main__":
     app.run(debug=True)
