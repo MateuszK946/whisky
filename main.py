@@ -1,6 +1,7 @@
 from flask import Flask
 from models import Whisky, db, Taste
 from flask import render_template, request, redirect
+from random import randint
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///whisky.db'
@@ -10,7 +11,14 @@ app.app_context().push()
 @app.route('/')
 def hello_world():
     whiskies = Whisky.query.all()
-    return render_template('index.html', whisky=whiskies)
+    rand1 = randint(0, 378)
+    rand2 = randint(0, 378)
+    rand3 = randint(0, 378)
+    if rand2 == rand1 and rand2:
+        rand2 = randint(0, 378)
+    if rand3 == rand1 or rand3 == rand2:
+        rand3 = randint(0, 378)
+    return render_template('index.html', whisky=whiskies, rand1=rand1, rand2=rand2, rand3=rand3)
 
 @app.route('/<int:id>', methods=['POST', 'GET'])
 def whisky(id):
@@ -50,6 +58,7 @@ def sortowanie():
         return render_template('lista_whisky.html', w_name=w_name, whisky_id=whisky)
     else:
         return render_template('sortowanie.html', taste=tastes) # taste=(', '.join(tastes)))
+
 @app.route('/list', methods=['POST', 'GET'])
 def list():
     whisky = Whisky.query.all()
@@ -70,6 +79,16 @@ def list():
         return redirect(f'/{id}')
     else:
         return render_template('lista_whisky.html')
+
+@app.route('/random', methods=['POST', 'GET'])
+def random():
+    id = []
+    for i in Whisky.query.all():
+        id.append(i.id)
+    rand = randint(18, 518)
+    if rand not in id:
+        rand = randint(18, 518)
+    return redirect(f'/{rand}')
 
 if __name__ == "__main__":
     app.run(debug=True)

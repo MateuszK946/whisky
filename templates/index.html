@@ -6,11 +6,15 @@
 </head>
 <body>
     <div class = "conntent">
-        <h1> Wybierz whisky: </h1>
-        <a href="http://127.0.0.1:5000/{{whisky[7].id}}"><img name="img_id" id="{{whisky[0].id}}}" src="{{whisky[7].detail_img_url}}" width="400" height="737"></a>
-        <a href="http://127.0.0.1:5000/{{whisky[63].id}}"><img name="img_id" id="{{whisky[2].id}}}" src="{{whisky[63].detail_img_url}}" width="450" height="737"></a>
-        <a href="http://127.0.0.1:5000/{{whisky[200].id}}"><img name="img_id" id="{{whisky[1].id}}}" src="{{whisky[200].detail_img_url}}" width="450" height="737"></a>
-        <p><button class="butt" onclick="location.href='http://127.0.0.1:5000/sortowanie'" type="button">Sortowanie</button></p>
+        <h1>Znajdź swoją whiski!</h1>
+        <form action="/random" method="POST">
+            <p><button class="butt" onclick="location.href='http://127.0.0.1:5000/sortowanie'" type="button">Sortowanie po smakach</button> <input class="butt" type="submit" name="random" value="Wylosuj swoją Whisky!" /></p>
+        </form>
+        <h1> Albo </h1>
+        <h2> Wybierz jedną z proponowanych whisky: </h2>
+        <a href="http://127.0.0.1:5000/{{whisky[rand1].id}}"><img name="img_id" id="{{whisky[0].id}}}" src="{{whisky[rand1].detail_img_url}}" width="400" height="540"></a>
+        <a href="http://127.0.0.1:5000/{{whisky[rand2].id}}"><img name="img_id" id="{{whisky[1].id}}}" src="{{whisky[rand2].detail_img_url}}" width="400" height="540"></a>
+        <a href="http://127.0.0.1:5000/{{whisky[rand3].id}}"><img name="img_id" id="{{whisky[2].id}}}" src="{{whisky[rand3].detail_img_url}}" width="400" height="540"></a>
     </div>
 </body>
 </html>
