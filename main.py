@@ -11,13 +11,13 @@ app.app_context().push()
 @app.route('/')
 def hello_world():
     whiskies = Whisky.query.all()
-    rand1 = randint(0, 378)
-    rand2 = randint(0, 378)
-    rand3 = randint(0, 378)
+    rand1 = randint(0, 377)
+    rand2 = randint(0, 377)
+    rand3 = randint(0, 377)
     if rand2 == rand1 and rand2:
-        rand2 = randint(0, 378)
+        rand2 = randint(0, 377)
     if rand3 == rand1 or rand3 == rand2:
-        rand3 = randint(0, 378)
+        rand3 = randint(0, 377)
     return render_template('index.html', whisky=whiskies, rand1=rand1, rand2=rand2, rand3=rand3)
 
 @app.route('/<int:id>', methods=['POST', 'GET'])
@@ -37,14 +37,14 @@ def sortowanie():
     if request.method == 'POST':
         tastes_checkbox = []
         for taste in tastes:
-            a = request.form.get(f"{taste}")
-            if a != None:
-                tastes_checkbox.append(a)
+            chosen_taste = request.form.get(f"{taste}")
+            if chosen_taste != None:
+                tastes_checkbox.append(chosen_taste)
         id = []
         w_name = []
-        for i in Whisky.query.all():
-            id.append(i.id)
-            whisky = Whisky.query.get_or_404(i.id)
+        for whisky_id in Whisky.query.all():
+            id.append(whisky_id.id)
+            whisky = Whisky.query.get_or_404(whisky_id.id)
             tastes_in_whisky = []
             for taste in whisky.tastes:
                 tastes_in_whisky.append(taste.name)
@@ -62,14 +62,14 @@ def list():
 
     if request.method == 'POST':
         whisky_chosen = ""
-        for i in whisky_name:
-            a = request.form.get(f"{i}")
-            if a != None:
-                whisky_chosen = a
+        for name in whisky_name:
+            choice = request.form.get(f"{name}")
+            if choice != None:
+                whisky_chosen = choice
         id = 0
-        for x in whiskies:
-            if x.name == whisky_chosen:
-                id = (x.id)
+        for whisky_id in whiskies:
+            if whisky_id.name == whisky_chosen:
+                id = (whisky_id.id)
         return redirect(f'/{id}')
     else:
         return render_template('lista_whisky.html')
