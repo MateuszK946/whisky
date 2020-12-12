@@ -7,12 +7,12 @@
 <body>
     <div class="conntent_2">
         <form action="/{{whisky.id}}" method="POST">
-            <input type="submit" value="Powrót do menu wyboru">
+            <input class="butt" type="submit" value="Powrót do menu wyboru">
             <h1>Szczegóły:</h1>
             <h2> Nazwa: {{whisky.name}}</h2>
-            <h2> Kraj Pochodzenia: {{whisky.country}}</h2>
-            <h2> Smak: {{whisky.taste}}</h2>
-            <p><img name="img_id" id="{{whisky.id}}}" src="{{whisky.image}}" width="400" height="737"></p>
+            <h2> Region: {{whisky.region}}</h2>
+            <h2> Smaki: {{taste}}</h2>
+            <p><img name="img_id" id="{{whisky.id}}}" src="{{whisky.detail_img_url}}" width="400" height="540"></p>
         </form>
     </div>
 </body>

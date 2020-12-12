@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Whisky</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+</head>
+<body>
+    <div class="conntent_3">
+        <p><button class="butt" onclick="location.href='http://127.0.0.1:5000/'" type="button">Powrót do menu wyboru</button></p>
+            <form action="/sortowanie" method="POST">
+                <h2> Wybierz smaki jakie ma mieć whisky!</h2>
+                {% for ts in taste %}
+                <input type="checkbox" id="{{ts}}" name="{{ts}}" value="{{ts}}">{{ts}}</input>
+                {% endfor %}
+                <p><input type="submit" value="Pokaż Whisky"></p>
+            </form>
+    </div>
+</body>
+</html>

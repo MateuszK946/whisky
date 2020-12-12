@@ -10,7 +10,7 @@ h1{
 .conntent {
     margin: auto;
     width: 100%;
-    padding: 20px;
+    /*padding: 10px;*/
     position: absolute;
     text-align: center;
 
@@ -20,4 +20,16 @@ h1{
     text-align: center;
     top: 1%;
     width: 100%;
+}
+
+.conntent_3 {
+    position: absolute;
+    text-align: center;
+    top: 1%;
+    width: 100%;
+}
+
+.butt{
+    height:40px;
+    width:400px;
 }

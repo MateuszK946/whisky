@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Whisky</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+</head>
+<body>
+    <div class="conntent_2">
+        <p><button class="butt" onclick="location.href='http://127.0.0.1:5000/'" type="button">Powrót do menu wyboru</button>
+        <button class="butt" onclick="location.href='http://127.0.0.1:5000/sortowanie'" type="button">Ponowne sortowanie</button> </p>
+        <form action="/list" method="POST">
+            {% for list_of_whisky in w_name %}
+                <input class="butt" type="submit" name="{{list_of_whisky}}" value="{{list_of_whisky}}" /><br><br>
+                {% endfor %}
+            {%if w_name==[]%}
+                <h1>Nie ma wisky bez smaku!</h1>
+            {%endif%}
+        </form>
+    </div>
+</body>
