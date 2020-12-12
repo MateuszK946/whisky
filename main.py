@@ -53,7 +53,7 @@ def sortowanie():
                     tastes_in_whisky.clear()
         return render_template('lista_whisky.html', w_name=w_name, whisky_id=whisky)
     else:
-        return render_template('sortowanie.html', taste=tastes) # taste=(', '.join(tastes)))
+        return render_template('sortowanie.html', taste=tastes)
 
 @app.route('/list', methods=['POST', 'GET'])
 def list():
